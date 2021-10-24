@@ -1,11 +1,11 @@
-# 非正式用文章產生器 article-generator
+# 非正式用文章產生器 article-generator (zh-tw)
 ## 這個工具能做什麼？
 它能產生逾萬字的文章，並且還具字數分段功能。
 ## 如何使用？
 瀏覽網頁並在第一個框格輸入文章的主題，在下面的框格中輸入文章字數，您也可以嘗試調整各個進階選項以產生更符合需求的文章，最後點擊"產生文章"即可產生文章。
 ## 運作原理
 透過篩選資料關鍵字從資料庫調用資料，再透過替換字元的方式將使用者輸入的主題套用至句子中，並讓連接詞部分重組以增加句子的隨機度，在產生完一小段時，偵測文章長度是否足夠，若不夠則重複以上步驟，讓文章字數可隨使用者需求無限延伸。
-# article-generator
+# article-generator (en)
 ## What can this tools dos?
 It can generate an article that almost 10,000 Chinese words. What's more, it can auto segmented the article!
 ## How to use it?
