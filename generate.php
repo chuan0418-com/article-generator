@@ -18,15 +18,23 @@ function reset_the_data(){
     if ($_GET['query']=="" || !$_GET['query']){
         $sentences_data['名人']=查詢資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous'","array");
     }else{
-        if (rand(0,100)>=3){
+        for ($i=0, $唬爛名人查詢數量=0; count($input_keyword)>$i; $i++){ //產生rows數量
+            $唬爛名人查詢=執行資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous' AND `content` REGEXP '$input_keyword[$i]'","array");
+            $唬爛名人查詢數量=$唬爛名人查詢數量+mysqli_num_rows($唬爛名人查詢);
+        };
+        if ($唬爛名人查詢數量==0){
+            $sentences_data['名人']=查詢資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous'","array");
+        }else{
             for ($i=0; count($input_keyword)>$i; $i++){
                 $唬爛名人查詢=查詢資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous' AND `content` REGEXP '$input_keyword[$i]'","array");
-                for ($j=0; count($唬爛名人查詢)>$j; $j++){
-                    $sentences_data['名人'][count($sentences_data['名人'])+1]=$唬爛名人查詢[$j];
+                if ($唬爛名人查詢){
+                    for ($j=0; count($唬爛名人查詢)>$j; $j++){
+                        $sentences_data['名人'][count($sentences_data['名人'])+1]=$唬爛名人查詢[$j];
+                    };
+                }else{
+                    $sentences_data['名人']=查詢資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous'","array");
                 };
             };
-        }else{
-            $sentences_data['名人']=查詢資料庫("article_generator","SELECT * FROM `article_generator`.`content` WHERE `type`='famous'","array");
         };
     };
     $randomized_sentences['前置']=$sentences_data['前置'][rand(0,count($sentences_data['前置']))]['content'];
